@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package unrarpass;
+package unrarpass.unrar;
 
-import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
-import javax.swing.JTextField;
 
 /**
  *
@@ -19,7 +19,6 @@ public class Caracteres {
     private Caracteres next;
     private Caracteres ant;
     private String word;
-    private JTextField jTF;
     private String senha;
     private int count;
     private int line;
@@ -61,7 +60,7 @@ public class Caracteres {
         this.pos = pos;
     }
     
-    public void serLine(int line) {
+    public void setLine(int line) {
         this.line = line;
     }
     
@@ -118,6 +117,7 @@ public class Caracteres {
                     this.match = 0;
                 }
                 this.extractRarFilePass(this.senha + this.caract.charAt(i));
+                //this.md5HashGenerator(this.senha + this.caract.charAt(i));
                 this.match++;
             }
             this.pos = i;
@@ -165,5 +165,26 @@ public class Caracteres {
         String rarFilePath = "C:/Users/Bruno Reinicke/Documents/TESTE/Teste.rar";
         String destinationPath = "C:/Users/Bruno Reinicke/Documents/TESTE/Extracao";
         extractRarFile(rarFilePath, destinationPath, password);
+    }
+    
+    public void md5HashGenerator(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] bytes = password.getBytes();
+            md.update(bytes);
+            byte[] digest = md.digest();
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : digest) {
+                hexString.append(String.format("%02x", b & 0xff));
+            }
+            if (hexString.toString().equals("a2dd7e3ec2d2d4a970380cf70e0732f5")) {
+                System.out.println(password);
+                System.exit(0);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("Algoritmo de hash MD5 não encontrado.");
+            e.printStackTrace();
+        }
     }
 }
