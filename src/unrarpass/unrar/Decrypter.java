@@ -10,18 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
  * @author Bruno Reinicke
  */
-public class Decrypter {
+public final class Decrypter {
 
     private final int pos;
     private int count;
@@ -57,16 +51,6 @@ public class Decrypter {
         this.cara  = this.povoaLista(aux);
         this.cara.setPos(aux.getCaract().indexOf(this.pass.charAt(0)));
         this.cara.percorrer();
-    }
-    
-    public void readFile() {
-        String fileName = "C:/Users/Bruno Reinicke/Documents/TESTE/SENHAS.txt";
-        List<String> list = new ArrayList<>();
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            list = stream.map(String::toUpperCase).collect(Collectors.toList());
-            System.out.println("OK!");
-        } catch (IOException e) {
-        }
     }
     
     public String getMatch() {
