@@ -54,8 +54,8 @@ public class Decrypter {
     
     public void decrypt() {
         Caracteres aux = new Caracteres();
-        aux.setPos(aux.getCaract().indexOf(this.pass.charAt(0)));
         this.cara  = this.povoaLista(aux);
+        this.cara.setPos(aux.getCaract().indexOf(this.pass.charAt(0)));
         this.cara.percorrer();
     }
     

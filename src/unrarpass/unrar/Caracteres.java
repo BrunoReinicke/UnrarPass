@@ -115,7 +115,7 @@ public class Caracteres {
                         new Decrypter().SaveToFile(this.senha + this.caract.charAt(i));
                     this.aux++;
                     this.match = 0;
-                }
+                }    
                 this.extractRarFilePass(this.senha + this.caract.charAt(i));
                 //this.md5HashGenerator(this.senha + this.caract.charAt(i));
                 this.match++;
@@ -178,7 +178,7 @@ public class Caracteres {
             for (byte b : digest) {
                 hexString.append(String.format("%02x", b & 0xff));
             }
-            if (hexString.toString().equals("a2dd7e3ec2d2d4a970380cf70e0732f5")) {
+            if (hexString.toString().equals("3fff18ce99ad41c7c912aae51d810925")) {
                 System.out.println(password);
                 System.exit(0);
             }
