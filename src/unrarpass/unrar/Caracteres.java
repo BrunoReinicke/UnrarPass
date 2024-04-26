@@ -23,7 +23,6 @@ public class Caracteres {
     private int count;
     private int line;
     private long match;
-    private int aux;
     private boolean stop;
     private boolean manual;
     
@@ -36,7 +35,6 @@ public class Caracteres {
         this.pos = -1;
         this.line = 0;
         this.match = 0;
-        this.aux = 0;
         this.manual = false;
     }
 
@@ -111,11 +109,9 @@ public class Caracteres {
                 this.next.percorrer();
             } else {
                 if (this.match == 1000000000) {
-                    if (this.aux == 9) 
-                        new Decrypter().SaveToFile(this.senha + this.caract.charAt(i));
-                    this.aux++;
+                    new Decrypter().SaveToFile(this.senha + this.caract.charAt(i));
                     this.match = 0;
-                }    
+                } 
                 this.extractRarFilePass(this.senha + this.caract.charAt(i));
                 //this.md5HashGenerator(this.senha + this.caract.charAt(i));
                 this.match++;
@@ -178,7 +174,7 @@ public class Caracteres {
             for (byte b : digest) {
                 hexString.append(String.format("%02x", b & 0xff));
             }
-            if (hexString.toString().equals("3fff18ce99ad41c7c912aae51d810925")) {
+            if (hexString.toString().equals("3071da78e08fd27916f96631dc4af3e7")) {
                 System.out.println(password);
                 System.exit(0);
             }
